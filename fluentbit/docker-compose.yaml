@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  fluent-bit:
+    image: fluent/fluent-bit:1.8-debug
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./parsers.conf:/fluent-bit/etc/parsers.conf
+      - ../logs:/logs
+    networks:
+      - logs-dojo-net
+
+networks:
+  logs-dojo-net:
+    driver: bridge
